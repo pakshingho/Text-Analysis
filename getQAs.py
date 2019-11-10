@@ -23,11 +23,9 @@ r = s.post(url, data=data)
 aaa=r.text
 
 # Convert text to dictionary:
-import json
 aaa_d = json.loads(aaa)
 
 # Convert dictionary to dataframe:
-import pandas as pd
 df = pd.DataFrame.from_dict(aaa_d['rows'])
 
 # Extract reply answers from 'replyList' column cells:
@@ -35,3 +33,4 @@ df.loc[df['replyList'].isna(), 'replyList'] = [[{}.fromkeys(df['replyList'].str[
 
 #df_reply = pd.DataFrame(df['replyList'].apply(pd.Series).iloc[:,0].to_list())
 df_reply = pd.DataFrame(df['replyList'].str[0].to_list())
+
