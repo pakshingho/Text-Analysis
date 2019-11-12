@@ -17,7 +17,9 @@ import pandas as pd
 ####################
 # Part 1 newer part
 #################
-pid = pd.read_csv('roadshowType-12.csv', usecols=['pid']).pid[0:113]
+# pid = pd.read_csv('roadshowType-12.csv', usecols=['pid']).pid[0:113]
+
+pid = pd.read_csv('roadshowType-5.csv',usecols=['pid']).sort_values('pid').reset_index(drop=True).pid[:4455]
 
 url = 'http://rs.p5w.net/roadshowLive/getNInteractionDatas.shtml'
 
@@ -36,7 +38,9 @@ for i in pid:
     
     # Convert dictionary to dataframe:
     df = pd.DataFrame.from_dict(text_dict['rows'])
-    df.to_csv('roadshowType-12-text/' + str(i) + '.csv', index=False)
+    
+    #df.to_csv('roadshowType-12-text/' + str(i) + '.csv', index=False)
+    df.to_csv('roadshowType-5-text/' + str(i) + '.csv', index=False)
 
 print('Download done.')
 
